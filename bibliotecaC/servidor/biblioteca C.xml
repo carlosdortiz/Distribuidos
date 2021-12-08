@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<bibliotecas>
+	<bibliotecaC>
+		<book>
+			<vol value = "Romeo y Julieta"></vol>
+			<autor value = "William Shakespeare"></autor>
+		</book>
+		<book>
+			<vol value = "Los tres mosqueteros"></vol>
+			<autor value = "Alejandro Dumas"></autor>
+		</book>
+		<book>
+			<vol value = "Macbeth"></vol>
+			<autor value = "William Shakespeare"></autor>
+		</book>
+		<book>
+			<vol value = "Diario de Ana Frank"></vol>
+			<autor value = "Ana Frank"></autor>
+		</book>
+		<book>
+			<vol value = "Hamlet"></vol>
+			<autor value = "William Shakespeare"></autor>
+		</book>
+	</bibliotecaC>
+</bibliotecas>

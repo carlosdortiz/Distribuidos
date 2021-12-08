@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<bibliotecas>
+	<bibliotecaB>
+		<book>
+			<titulo value = "Iliada"></titulo>
+			<autor value = "Homero"></autor>
+		</book>
+		<book>
+			<titulo value = "Odisea"></titulo>
+			<autor value = "Homero"></autor>
+		</book>
+		<book>
+			<titulo value = "La metamorfosis"></titulo>
+			<autor value = "Franz Kafka"></autor>
+		</book>
+		<book>
+			<titulo value = "Los miserables"></titulo>
+			<autor value = "Victor Hugo"></autor>
+		</book>
+	</bibliotecaB>
+</bibliotecas>

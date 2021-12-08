@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<bibliotecas>
+	<bibliotecaA>
+		<book>
+			<libro value = "dracula"></libro>
+			<autor value = "Bram Stoker"></autor>
+		</book>
+		<book>
+			<libro value = "El conde de Montecristo"></libro>
+			<autor value = "Alejandro Dumas"></autor>
+		</book>
+		<book>
+			<libro value = "Moby-Dick"></libro>
+			<autor value = "Herman Melville"></autor>
+		</book>
+		<book>
+			<libro value = "La joya de las siete estrellas"></libro>
+			<autor value = "Bram Stoker"></autor>
+		</book>
+		<book>
+			<libro value = "La dama del sudario"></libro>
+			<autor value = "Bram Stoker"></autor>
+		</book>
+	</bibliotecaA>
+</bibliotecas>
