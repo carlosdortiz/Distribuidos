@@ -36,13 +36,9 @@ public class MiddlewareClienteA {
     public void pedirLibro() throws RemoteException {
 
         // registropeticiones();
-
+        System.out.println("Entro en pedirLibro");
         if (this.biblioteca == "A" || this.biblioteca == "") {
-
-            if (this.biblioteca == "") {
-                this.biblioteca = "A";
-            }
-
+            System.out.println("Entro en el if de la biblioteca A");
             try {
 
                 Registry registry = LocateRegistry.getRegistry("127.0.0.1", 9100);
