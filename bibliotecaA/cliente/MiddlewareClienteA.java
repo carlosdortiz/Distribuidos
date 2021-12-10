@@ -15,14 +15,15 @@ public class MiddlewareClienteA {
     public String traduccionLengA() throws RemoteException {
         // este metodo recibe el comando completo que desea ejecutar nuestro usuario
         // como String y lo traduce al lenguaje Z
-
+        System.out.println("Comando antes de la traduccion: " + comando);
         if (this.comando.indexOf("pedirLibro") == 1) {
             // en caso de que el comando recibido sea pedirLibro lo tracuce a
             // getTittle
-
+            System.out.println("Comando despues de la traduccion: " + comando);
             return this.comando.replaceAll("pedirLibro", "getTittle");
         } else {
             // sino eso significa que el comando es pedirAutor y lo traduce a getAuthor
+            System.out.println("Comando despues de la traduccion: " + comando);
             return this.comando.replaceAll("pedirAutor", "getAuthor");
         }
     }

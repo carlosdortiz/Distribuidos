@@ -20,6 +20,7 @@ public class MiddlewareServidorAImp implements MiddlewareServidorA {
 
     public String pedirLibro(String libroBuscado) throws RemoteException {
 
+        System.out.println("Estoy buscando: " + libroBuscado);
         String env = "";
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -75,6 +76,8 @@ public class MiddlewareServidorAImp implements MiddlewareServidorA {
     }
 
     public String pedirAutor(String autorBuscado) throws RemoteException {
+
+        System.out.println("Estoy buscando a: " + autorBuscado);
 
         String env = "";
 
@@ -133,6 +136,7 @@ public class MiddlewareServidorAImp implements MiddlewareServidorA {
     public String traduccionLengZ(String comando) throws RemoteException {
         // este metodo recibe el comando traducido a lenguaje Z
 
+        System.out.println("Este es el comando en Z antes de la traduccion: " + comando);
         if (comando.indexOf("getTittle") == 1) {
             // si recibe el comando getTittle entonces extrae el titulo que debe buscar y
             // hace la llamada al metodo correspondiente
@@ -140,6 +144,7 @@ public class MiddlewareServidorAImp implements MiddlewareServidorA {
             comando = comando.replaceAll("getTittle", "");
             comando = comando.replaceAll("(", "");
             comando = comando.replaceAll(")", "");
+            ("Este es el comando despues de la traduccion: " + comando);
             return pedirLibro(comando);
 
         } else {
@@ -149,6 +154,7 @@ public class MiddlewareServidorAImp implements MiddlewareServidorA {
             comando = comando.replaceAll("getAuthor", "");
             comando = comando.replaceAll("(", "");
             comando = comando.replaceAll(")", "");
+            ("Este es el comando despues de la traduccion: " + comando);
             return pedirAutor(comando);
         }
     }
