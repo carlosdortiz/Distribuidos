@@ -3,7 +3,7 @@ import java.rmi.RemoteException;
 
 public interface MiddlewareServidorA extends Remote {
 
-    public String traduccionLengZ(String comando) throws RemoteException;
+    public String traduccionLengZ(String comando, String Origen) throws RemoteException;
 
     public String pedirLibro(String libro) throws RemoteException;
 

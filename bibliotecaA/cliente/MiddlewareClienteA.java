@@ -1,11 +1,14 @@
+import java.io.File;
+import java.io.FileWriter;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.time.format.DateTimeFormatter;
 
 public class MiddlewareClienteA {
 
     public String comando;
-    public String biblioteca;
+    public String biblioteca = "";
 
     public MiddlewareClienteA(String newComando, String newbiblioteca) {
         this.comando = newComando;
@@ -19,18 +22,26 @@ public class MiddlewareClienteA {
         if (this.comando.indexOf("pedirLibro") == 1) {
             // en caso de que el comando recibido sea pedirLibro lo tracuce a
             // getTittle
+            this.comando = this.comando.replaceAll("pedirLibro", "getTittle");
             System.out.println("Comando despues de la traduccion: " + comando);
-            return this.comando.replaceAll("pedirLibro", "getTittle");
+            return comando;
         } else {
             // sino eso significa que el comando es pedirAutor y lo traduce a getAuthor
+            this.comando = this.comando.replaceAll("pedirAutor", "getAuthor");
             System.out.println("Comando despues de la traduccion: " + comando);
-            return this.comando.replaceAll("pedirAutor", "getAuthor");
+            return comando;
         }
     }
 
     public void pedirLibro() throws RemoteException {
 
-        if (this.biblioteca == "A") {
+        // registropeticiones();
+
+        if (this.biblioteca == "A" || this.biblioteca == "") {
+
+            if (this.biblioteca == "") {
+                this.biblioteca = "A";
+            }
 
             try {
 
@@ -38,7 +49,7 @@ public class MiddlewareClienteA {
 
                 MiddlewareServidorA libroBuscado = (MiddlewareServidorA) registry.lookup("l");
 
-                System.out.println(libroBuscado.traduccionLengZ(traduccionLengA()));
+                System.out.println(libroBuscado.traduccionLengZ(traduccionLengA(), this.biblioteca));
 
             } catch (Exception e) {
                 System.out.println("Client side error..." + e);
@@ -52,7 +63,7 @@ public class MiddlewareClienteA {
 
                 MiddlewareServidorA libroBuscado = (MiddlewareServidorA) registry.lookup("l");
 
-                System.out.println(libroBuscado.traduccionLengZ(traduccionLengA()));
+                System.out.println(libroBuscado.traduccionLengZ(traduccionLengA(), this.biblioteca));
 
             } catch (Exception e) {
                 System.out.println("Client side error..." + e);
@@ -66,7 +77,7 @@ public class MiddlewareClienteA {
 
                 MiddlewareServidorA libroBuscado = (MiddlewareServidorA) registry.lookup("l");
 
-                System.out.println(libroBuscado.traduccionLengZ(traduccionLengA()));
+                System.out.println(libroBuscado.traduccionLengZ(traduccionLengA(), this.biblioteca));
 
             } catch (Exception e) {
                 System.out.println("Client side error..." + e);
@@ -78,6 +89,8 @@ public class MiddlewareClienteA {
 
     public void pedirAutor() throws RemoteException {
 
+        // registropeticiones();
+
         if (this.biblioteca == "A") {
 
             try {
@@ -86,7 +99,7 @@ public class MiddlewareClienteA {
 
                 MiddlewareServidorA libroBuscado = (MiddlewareServidorA) registry.lookup("l");
 
-                System.out.println(libroBuscado.traduccionLengZ(traduccionLengA()));
+                System.out.println(libroBuscado.traduccionLengZ(traduccionLengA(), this.biblioteca));
 
             } catch (Exception e) {
                 System.out.println("Client side error..." + e);
@@ -100,7 +113,7 @@ public class MiddlewareClienteA {
 
                 MiddlewareServidorA libroBuscado = (MiddlewareServidorA) registry.lookup("l");
 
-                System.out.println(libroBuscado.traduccionLengZ(traduccionLengA()));
+                System.out.println(libroBuscado.traduccionLengZ(traduccionLengA(), this.biblioteca));
 
             } catch (Exception e) {
                 System.out.println("Client side error..." + e);
@@ -114,7 +127,7 @@ public class MiddlewareClienteA {
 
                 MiddlewareServidorA libroBuscado = (MiddlewareServidorA) registry.lookup("l");
 
-                System.out.println(libroBuscado.traduccionLengZ(traduccionLengA()));
+                System.out.println(libroBuscado.traduccionLengZ(traduccionLengA(), this.biblioteca));
 
             } catch (Exception e) {
                 System.out.println("Client side error..." + e);
@@ -122,5 +135,17 @@ public class MiddlewareClienteA {
 
         }
 
+    }
+
+    public void registropeticiones() {
+        // hay que cambiar la ruta
+        File rpeticiones = new File("C:/Users/RP - ClienteA.txt");
+
+        FileWriter fw = new FileWriter(rpeticiones, true);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+
+        fw.write(this.comando + " " + dtf.format(LocalDateTime.now()) + "\r\n");
+        fw.close();
     }
 }

@@ -72,6 +72,7 @@ public class MiddlewareServidorAImp implements MiddlewareServidorA {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return env;
     }
 
@@ -129,13 +130,15 @@ public class MiddlewareServidorAImp implements MiddlewareServidorA {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return env;
 
     }
 
-    public String traduccionLengZ(String comando) throws RemoteException {
+    public String traduccionLengZ(String comando, String origen) throws RemoteException {
         // este metodo recibe el comando traducido a lenguaje Z
 
+        // registropeticion(comando, origen);
         System.out.println("Este es el comando en Z antes de la traduccion: " + comando);
         if (comando.indexOf("getTittle") == 1) {
             // si recibe el comando getTittle entonces extrae el titulo que debe buscar y
@@ -144,7 +147,7 @@ public class MiddlewareServidorAImp implements MiddlewareServidorA {
             comando = comando.replaceAll("getTittle", "");
             comando = comando.replaceAll("(", "");
             comando = comando.replaceAll(")", "");
-            ("Este es el comando despues de la traduccion: " + comando);
+            System.out.println("Este es el comando despues de la traduccion: " + comando);
             return pedirLibro(comando);
 
         } else {
@@ -154,8 +157,20 @@ public class MiddlewareServidorAImp implements MiddlewareServidorA {
             comando = comando.replaceAll("getAuthor", "");
             comando = comando.replaceAll("(", "");
             comando = comando.replaceAll(")", "");
-            ("Este es el comando despues de la traduccion: " + comando);
+            System.out.println("Este es el comando despues de la traduccion: " + comando);
             return pedirAutor(comando);
         }
+    }
+
+    public void registropeticion(String comando, String origen) {
+        // hay que cambiar la ruta
+        File rpeticion = new File("C:/Users/RP - ServidorMiddlewareA.txt");
+
+        FileWriter fw = new FileWriter(rpeticiones, true);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+
+        fw.write(comando + " desde la biblioteca " + origen + " " + dtf.format(LocalDateTime.now()) + "\r\n");
+        fw.close();
     }
 }
