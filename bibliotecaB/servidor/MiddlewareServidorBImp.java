@@ -26,7 +26,7 @@ public class MiddlewareServidorBImp implements MiddlewareServidorB {
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            Document document = builder.parse(new File("biblioteca A.xml"));
+            Document document = builder.parse(new File("biblioteca B.xml"));
 
             document.getDocumentElement().normalize();
 
@@ -82,7 +82,7 @@ public class MiddlewareServidorBImp implements MiddlewareServidorB {
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            Document document = builder.parse(new File("biblioteca A.xml"));
+            Document document = builder.parse(new File("biblioteca B.xml"));
 
             document.getDocumentElement().normalize();
 

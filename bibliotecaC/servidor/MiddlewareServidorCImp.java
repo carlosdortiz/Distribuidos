@@ -26,7 +26,7 @@ public class MiddlewareServidorCImp implements MiddlewareServidorC {
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            Document document = builder.parse(new File("biblioteca A.xml"));
+            Document document = builder.parse(new File("biblioteca C.xml"));
 
             document.getDocumentElement().normalize();
 
@@ -82,7 +82,7 @@ public class MiddlewareServidorCImp implements MiddlewareServidorC {
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            Document document = builder.parse(new File("biblioteca A.xml"));
+            Document document = builder.parse(new File("biblioteca C.xml"));
 
             document.getDocumentElement().normalize();
 
