@@ -1,69 +1,53 @@
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
+import java.rmi.RemoteException;
 import java.util.Scanner;
 
-public class ClienteA{
-    public static void main(String [] args){
+public class ClienteA {
+    public static void main(String[] args) throws RemoteException {
 
         Scanner input = new Scanner(System.in);
+        System.out.println("\nBIENVENIDO A LA BIBLIOTECA A\n");
         System.out.println("1) Pedir Libro");
         System.out.println("2) Pedir Autor");
-        System.out.println("Elija una opcion");
+        System.out.println("Elija una opcion\n");
         int opcion = input.nextInt();
 
         if (opcion == 1) {
 
-            System.out.print("libro:");
+            System.out.print("Libro: ");
             Scanner libroIn = new Scanner(System.in);
             String libro = libroIn.nextLine();
-            System.out.print("biblioteca:");
+            System.out.print("Biblioteca en la que desea buscar: ");
             Scanner bibIn = new Scanner(System.in);
             String biblioteca = bibIn.nextLine();
 
-            if (biblioteca == ""){
-                try{
+            MiddlewareClienteA middleware = new MiddlewareClienteA("pedirLibro(" + libro + ")", biblioteca);
 
-                Registry registry = LocateRegistry.getRegistry("127.0.0.1",9100);
+            middleware.pedirLibro();
 
-                Middleware libroBuscado = (Middleware) registry.lookup("l");
-                
+            libroIn.close();
+            bibIn.close();
 
-                System.out.println(libroBuscado.pedirLibro(libro));
+        } else if (opcion == 2) {
 
-                }catch(Exception e){
-                    System.out.println("Client side error..." + e);
-                }
-
-            }
-
-        }else if (opcion == 2){
-
-            System.out.print("Autor:");
+            System.out.print("Autor: ");
             Scanner autorIn = new Scanner(System.in);
             String autor = autorIn.nextLine();
-            System.out.print("biblioteca:");
+            System.out.print("Biblioteca en la que desea buscar: ");
             Scanner bibIn = new Scanner(System.in);
             String biblioteca = bibIn.nextLine();
 
-            if (biblioteca == ""){
-                try{
+            MiddlewareClienteA middleware = new MiddlewareClienteA("pedirAutor(" + autor + ")", biblioteca);
 
-                Registry registry = LocateRegistry.getRegistry("127.0.0.1",9100);
+            middleware.pedirAutor();
 
-                Middleware libroBuscado = (Middleware) registry.lookup("l");
-                
+            autorIn.close();
+            bibIn.close();
 
-                System.out.println(libroBuscado.pedirAutor(autor));
-
-                }catch(Exception e){
-                    System.out.println("Client side error..." + e);
-                }
-
-            }
-
-        }else{
-            System.out.println("opción no válida");
+        } else {
+            System.out.println("Opción no válida");
         }
+
+        input.close();
 
     }
 }

@@ -2,7 +2,7 @@
 <bibliotecas>
 	<bibliotecaA>
 		<book>
-			<libro value = "dracula"></libro>
+			<libro value = "Dracula"></libro>
 			<autor value = "Bram Stoker"></autor>
 		</book>
 		<book>
